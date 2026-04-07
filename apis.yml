@@ -1,6 +1,7 @@
 aid: wager-api
 name: Wager API
-description: 'Build sports betting applications, bots and models with one API. '
+description: >-
+  Build sports betting applications, bots and models with one API.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -15,7 +16,8 @@ specificationVersion: '0.19'
 apis:
   - aid: wager-api:wager-api
     name: Wager API
-    description: 'Build sports betting applications, bots and models with one API. '
+    description: >-
+      Build sports betting applications, bots and models with one API.
     humanURL: ' https://wagerapi.com/'
     tags:
       - API
