@@ -1,0 +1,64 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "wager": "https://wagerapi.com/vocab/",
+
+    "SportsOdds": "wager:SportsOdds",
+    "Game": "schema:SportsEvent",
+    "game_id": "@id",
+    "sport": "wager:sport",
+    "league": "schema:organizer",
+    "home_team": {
+      "@id": "schema:homeTeam",
+      "@type": "schema:SportsTeam"
+    },
+    "away_team": {
+      "@id": "schema:awayTeam",
+      "@type": "schema:SportsTeam"
+    },
+    "game_date": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "venue": "schema:location",
+    "status": "schema:eventStatus",
+    "home_score": "wager:homeScore",
+    "away_score": "wager:awayScore",
+
+    "OddsMarket": "wager:OddsMarket",
+    "market": "wager:marketType",
+    "sportsbook": "wager:sportsbook",
+    "home_line": "wager:homeLine",
+    "home_odds": "wager:homeOdds",
+    "away_line": "wager:awayLine",
+    "away_odds": "wager:awayOdds",
+
+    "PlayerProp": "wager:PlayerProp",
+    "prop_id": "@id",
+    "player_id": "wager:playerId",
+    "player_name": "schema:name",
+    "line": "wager:propLine",
+    "over_odds": "wager:overOdds",
+    "under_odds": "wager:underOdds",
+
+    "Player": "schema:Person",
+    "first_name": "schema:givenName",
+    "last_name": "schema:familyName",
+    "full_name": "schema:name",
+    "position": "schema:jobTitle",
+    "team_name": "schema:memberOf",
+
+    "InjuryReport": "wager:InjuryReport",
+    "injury_type": "wager:injuryType",
+    "injury_status": "wager:injuryStatus",
+    "practice_status": "wager:practiceStatus",
+    "return_timeline": "wager:returnTimeline",
+
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.wagerapi.com/v1/props",
+    "headers": {
+      "X-API-Key": "YOUR_API_KEY"
+    },
+    "parameters": {
+      "sport": "nfl",
+      "game_id": "nfl-2026-playoffs-kc-buf-0111"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "prop_id": "prop-mahomes-pass-yards-0111",
+          "game_id": "nfl-2026-playoffs-kc-buf-0111",
+          "player_id": "pl-mahomes-15",
+          "player_name": "Patrick Mahomes",
+          "team": "Kansas City Chiefs",
+          "market": "passing_yards",
+          "line": 287.5,
+          "over_odds": -115,
+          "under_odds": -105,
+          "sportsbook": "DraftKings",
+          "updated_at": "2026-01-11T08:23:14-06:00"
+        },
+        {
+          "prop_id": "prop-allen-pass-yards-0111",
+          "game_id": "nfl-2026-playoffs-kc-buf-0111",
+          "player_id": "pl-allen-17",
+          "player_name": "Josh Allen",
+          "team": "Buffalo Bills",
+          "market": "passing_yards",
+          "line": 271.5,
+          "over_odds": -110,
+          "under_odds": -110,
+          "sportsbook": "DraftKings",
+          "updated_at": "2026-01-11T08:23:14-06:00"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,323 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Wager API"
+  description: >-
+    Shared capability definition for the Wager API sports betting data platform.
+    Provides real-time game odds, player props, futures markets, player statistics,
+    projections, injury reports, game schedules, and depth charts across NFL, NCAA,
+    NBA, MLB, NHL, soccer, tennis, and golf.
+  tags:
+    - Wager API
+    - Sports Betting
+    - Sports Odds
+    - Fantasy Sports
+    - Sports Data
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      WAGER_API_KEY: WAGER_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: wager-api
+      baseUri: https://api.wagerapi.com
+      description: "Wager API sports betting data platform"
+      authentication:
+        type: apikey
+        key: X-API-Key
+        value: "{{WAGER_API_KEY}}"
+        placement: header
+      resources:
+        - name: odds
+          path: /v1/odds
+          description: "Real-time game odds"
+          operations:
+            - name: get-game-odds
+              method: GET
+              description: "Get real-time game odds for spreads, moneylines, and totals"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: true
+                  description: "Sport identifier"
+                - name: market
+                  in: query
+                  type: string
+                  required: false
+                  description: "Odds market type filter"
+                - name: date
+                  in: query
+                  type: string
+                  required: false
+                  description: "Date filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: data
+                  type: array
+                  value: "$.data"
+        - name: props
+          path: /v1/props
+          description: "Player proposition odds"
+          operations:
+            - name: get-player-props
+              method: GET
+              description: "Get player proposition odds"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: true
+                  description: "Sport identifier"
+                - name: game_id
+                  in: query
+                  type: string
+                  required: false
+                  description: "Game identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: data
+                  type: array
+                  value: "$.data"
+        - name: futures
+          path: /v1/futures
+          description: "Futures and championship odds"
+          operations:
+            - name: get-futures-odds
+              method: GET
+              description: "Get futures and championship market odds"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: true
+                  description: "Sport identifier"
+                - name: market
+                  in: query
+                  type: string
+                  required: false
+                  description: "Futures market type"
+              outputRawFormat: json
+              outputParameters:
+                - name: data
+                  type: array
+                  value: "$.data"
+        - name: players
+          path: /v1/players
+          description: "Player information"
+          operations:
+            - name: get-players
+              method: GET
+              description: "Get player roster information"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: true
+                  description: "Sport identifier"
+                - name: team_id
+                  in: query
+                  type: string
+                  required: false
+                  description: "Team filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: data
+                  type: array
+                  value: "$.data"
+        - name: player-stats
+          path: /v1/players/{playerId}/stats
+          description: "Player statistics"
+          operations:
+            - name: get-player-stats
+              method: GET
+              description: "Get player statistics and game log"
+              inputParameters:
+                - name: playerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Player identifier"
+                - name: season
+                  in: query
+                  type: string
+                  required: false
+                  description: "Season year"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: player-projections
+          path: /v1/players/{playerId}/projections
+          description: "Player projections"
+          operations:
+            - name: get-player-projections
+              method: GET
+              description: "Get statistical projections for a player's upcoming games"
+              inputParameters:
+                - name: playerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Player identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: injuries
+          path: /v1/injuries
+          description: "Injury reports"
+          operations:
+            - name: get-injury-reports
+              method: GET
+              description: "Get current injury reports for players"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: true
+                  description: "Sport identifier"
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: "Injury status filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: data
+                  type: array
+                  value: "$.data"
+        - name: games
+          path: /v1/games
+          description: "Game schedules and results"
+          operations:
+            - name: get-games
+              method: GET
+              description: "Get game schedules, results, and status"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: true
+                  description: "Sport identifier"
+                - name: date
+                  in: query
+                  type: string
+                  required: false
+                  description: "Date filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: data
+                  type: array
+                  value: "$.data"
+        - name: depth-charts
+          path: /v1/depth-charts
+          description: "Team depth charts"
+          operations:
+            - name: get-depth-charts
+              method: GET
+              description: "Get team depth charts for lineup analysis"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: true
+                  description: "Sport identifier"
+                - name: team_id
+                  in: query
+                  type: string
+                  required: false
+                  description: "Team filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: data
+                  type: array
+                  value: "$.data"
+
+  exposes:
+    - type: rest
+      port: 8130
+      namespace: wager-api-rest
+      resources:
+        - path: /v1/odds
+          name: game-odds
+          description: "Real-time game odds"
+          operations:
+            - method: GET
+              name: get-game-odds
+              description: "Get game odds for a sport"
+              call: "wager-api.get-game-odds"
+              outputParameters:
+                - type: array
+                  mapping: "$.data"
+        - path: /v1/props
+          name: player-props
+          description: "Player proposition odds"
+          operations:
+            - method: GET
+              name: get-player-props
+              description: "Get player prop odds"
+              call: "wager-api.get-player-props"
+              outputParameters:
+                - type: array
+                  mapping: "$.data"
+        - path: /v1/futures
+          name: futures
+          description: "Futures market odds"
+          operations:
+            - method: GET
+              name: get-futures-odds
+              description: "Get futures odds"
+              call: "wager-api.get-futures-odds"
+              outputParameters:
+                - type: array
+                  mapping: "$.data"
+        - path: /v1/injuries
+          name: injuries
+          description: "Injury reports"
+          operations:
+            - method: GET
+              name: get-injury-reports
+              description: "Get player injury reports"
+              call: "wager-api.get-injury-reports"
+              outputParameters:
+                - type: array
+                  mapping: "$.data"
+
+    - type: mcp
+      port: 9130
+      namespace: wager-api-mcp
+      transport: http
+      tools:
+        - name: get-game-odds
+          description: "Get real-time game odds including spreads, moneylines, and totals for a sport"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wager-api.get-game-odds"
+          with:
+            sport: "tools.sport"
+            market: "tools.market"
+            date: "tools.date"
+          outputParameters:
+            - type: array
+              mapping: "$.data"
+        - name: get-player-props
+          description: "Get player proposition odds for a game or sport"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wager-api.get-player-props"
+          with:
+            sport: "tools.sport"
+            game_id: "tools.game_id"
+          outputParameters:
+            - type: array
+              mapping: "$.data"

@@ -1,0 +1,112 @@
+info:
+  title: Wager API Vocabulary
+  description: >-
+    Vocabulary and taxonomy for the Wager API covering sports betting odds,
+    player props, futures markets, fantasy sports data, and sports analytics domains.
+  version: 1.0.0
+  created: '2026-05-03'
+  modified: '2026-05-03'
+
+domains:
+  - name: Sports Odds
+    description: Betting odds and lines terminology
+    terms:
+      - term: Spread
+        definition: >-
+          A point handicap assigned to the favored team to level the playing field
+          for betting purposes. The favorite gives points and the underdog receives points.
+        synonyms: [Point Spread, Line, ATS Line]
+      - term: Moneyline
+        definition: >-
+          A bet on which team will win the game outright, without a point spread.
+          Expressed in American odds format (positive = underdog, negative = favorite).
+        synonyms: [ML, Win Bet]
+      - term: Total
+        definition: >-
+          A bet on whether the combined score of both teams will be over or under
+          a set number (the total line).
+        synonyms: [Over/Under, O/U, OU]
+      - term: Alt Spread
+        definition: >-
+          An alternate point spread offering higher or lower lines than the market
+          spread, with correspondingly different odds.
+        synonyms: [Alternate Line, Alternate Spread]
+      - term: Player Prop
+        definition: >-
+          A bet on an individual player's statistical performance in a game,
+          such as passing yards, points, home runs, or assists.
+        synonyms: [Prop Bet, Player Proposition]
+      - term: American Odds
+        definition: >-
+          Odds format used in the United States. Negative odds (e.g. -110) show how
+          much you must bet to win $100. Positive odds (e.g. +150) show how much
+          you win on a $100 bet.
+        synonyms: [Moneyline Odds, US Odds]
+      - term: Futures
+        definition: >-
+          A bet placed on an outcome that will be decided in the future, such as
+          a championship winner, award recipient, or season win total.
+        synonyms: [Future Bet, Outright Bet]
+      - term: Juice
+        definition: >-
+          The commission charged by a sportsbook for taking a bet, typically
+          reflected in odds like -110 instead of even (+100).
+        synonyms: [Vig, Vigorish, Commission]
+
+  - name: Sports Data
+    description: Player and team statistical data terminology
+    terms:
+      - term: Projection
+        definition: >-
+          A statistical forecast of a player's expected performance in an upcoming
+          game, based on historical data, matchup analysis, and modeling.
+      - term: Injury Status
+        definition: >-
+          Official designation of a player's availability for an upcoming game.
+          Common statuses include questionable, doubtful, out, and injured reserve.
+        values:
+          - questionable
+          - doubtful
+          - out
+          - ir
+          - day_to_day
+      - term: Depth Chart
+        definition: >-
+          An ordered list showing players at each position by their projected
+          importance to the team, with starter (depth 1) at the top.
+      - term: Fantasy Points
+        definition: >-
+          A scoring total for a player based on their statistical performance
+          applied to a fantasy sports scoring system.
+
+  - name: Sports
+    description: Sports and league identifiers
+    sports:
+      - id: nfl
+        name: NFL
+        full_name: National Football League
+        seasons: annual
+      - id: ncaaf
+        name: NCAA Football
+        full_name: NCAA Division I Football
+      - id: ncaab
+        name: NCAA Basketball
+        full_name: NCAA Division I Men's Basketball
+      - id: nba
+        name: NBA
+        full_name: National Basketball Association
+      - id: mlb
+        name: MLB
+        full_name: Major League Baseball
+      - id: nhl
+        name: NHL
+        full_name: National Hockey League
+      - id: soccer
+        name: Soccer
+        leagues: [EPL, La Liga, Bundesliga, Serie A, MLS, Champions League]
+      - id: tennis
+        name: Tennis
+        tournaments: [Wimbledon, US Open, French Open, Australian Open]
+      - id: golf
+        name: Golf
+        tournaments: [Masters, US Open, The Open, PGA Championship]

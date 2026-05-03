@@ -1,0 +1,96 @@
+extends: [[spectral:oas, recommended]]
+rules:
+  wager-api-key-header:
+    description: Wager API requires X-API-Key header authentication
+    message: "Wager API must use X-API-Key header for authentication"
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          required:
+            - "apiKey"
+
+  wager-api-versioned-paths:
+    description: All Wager API paths must be versioned with /v1/ prefix
+    message: "API paths must include /v1/ version prefix"
+    severity: error
+    given: "$.paths"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            "^/v[0-9]+/":
+              type: object
+
+  wager-api-sport-parameter:
+    description: Odds and data endpoints should document the sport parameter
+    message: "Sports data endpoints should include sport parameter"
+    severity: warn
+    given: "$.paths[/v1/odds,/v1/props,/v1/futures,/v1/injuries,/v1/depth-charts][get].parameters"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            type: object
+            properties:
+              name:
+                const: sport
+
+  wager-api-operation-ids:
+    description: All Wager API operations must have operationId
+    message: "Operation must have an operationId"
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  wager-api-summaries-title-case:
+    description: All Wager API operation summaries should use Title Case
+    message: "Operation summary should use Title Case"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  wager-api-response-envelope:
+    description: Wager API list endpoints should use data envelope in responses
+    message: "List responses should wrap results in a data array"
+    severity: warn
+    given: "$.paths[*][get].responses[200].content.application/json.schema.properties"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: ["data"]
+            - required: ["results"]
+
+  wager-api-https-only:
+    description: Wager API servers must use HTTPS
+    message: "Server URL must use HTTPS"
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  wager-api-path-params-kebab:
+    description: Path segments should use kebab-case
+    message: "Path segments should be kebab-case"
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/v[0-9]+/[a-z][a-z0-9-]*(/\\{[a-zA-Z]+\\})?((/[a-z][a-z0-9-]*)*(/\\{[a-zA-Z]+\\})*)*)$"

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/wager-api/main/json-schema/wager-api-game-odds-schema.json",
+  "title": "Wager API Game Odds",
+  "description": "Schema for game odds data from the Wager API including spreads, moneylines, and totals",
+  "type": "object",
+  "properties": {
+    "game_id": {
+      "type": "string",
+      "description": "Unique game identifier"
+    },
+    "sport": {
+      "type": "string",
+      "enum": ["nfl", "ncaaf", "ncaab", "nba", "mlb", "nhl", "soccer", "tennis", "golf"],
+      "description": "Sport identifier"
+    },
+    "league": {
+      "type": "string",
+      "description": "League name",
+      "example": "NFL"
+    },
+    "home_team": {
+      "type": "string",
+      "description": "Home team name"
+    },
+    "away_team": {
+      "type": "string",
+      "description": "Away team name"
+    },
+    "game_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Game date and time in ISO 8601 format"
+    },
+    "markets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "market": {
+            "type": "string",
+            "enum": ["spread", "moneyline", "total", "alt_spread", "alt_total", "halftime", "winning_margin"],
+            "description": "Market type"
+          },
+          "sportsbook": {
+            "type": "string",
+            "description": "Sportsbook offering this line"
+          },
+          "home_line": {
+            "type": "number",
+            "description": "Home team line value"
+          },
+          "home_odds": {
+            "type": "integer",
+            "description": "Home team American odds (e.g. -110, +150)"
+          },
+          "away_line": {
+            "type": "number",
+            "description": "Away team line value"
+          },
+          "away_odds": {
+            "type": "integer",
+            "description": "Away team American odds"
+          }
+        },
+        "required": ["market", "sportsbook", "home_odds", "away_odds"]
+      },
+      "description": "Available odds markets for this game"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last odds update"
+    }
+  },
+  "required": ["game_id", "sport", "home_team", "away_team", "game_date", "markets"]
+}

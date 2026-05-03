@@ -1,0 +1,64 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.wagerapi.com/v1/odds",
+    "headers": {
+      "X-API-Key": "YOUR_API_KEY"
+    },
+    "parameters": {
+      "sport": "nfl",
+      "market": "spread",
+      "date": "2026-01-11"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "game_id": "nfl-2026-playoffs-kc-buf-0111",
+          "sport": "nfl",
+          "league": "NFL",
+          "home_team": "Kansas City Chiefs",
+          "away_team": "Buffalo Bills",
+          "game_date": "2026-01-11T13:00:00-06:00",
+          "markets": [
+            {
+              "market": "spread",
+              "sportsbook": "DraftKings",
+              "home_line": -3.5,
+              "home_odds": -110,
+              "away_line": 3.5,
+              "away_odds": -110
+            },
+            {
+              "market": "spread",
+              "sportsbook": "FanDuel",
+              "home_line": -3.5,
+              "home_odds": -112,
+              "away_line": 3.5,
+              "away_odds": -108
+            },
+            {
+              "market": "moneyline",
+              "sportsbook": "DraftKings",
+              "home_line": 0,
+              "home_odds": -175,
+              "away_line": 0,
+              "away_odds": 148
+            },
+            {
+              "market": "total",
+              "sportsbook": "DraftKings",
+              "home_line": 47.5,
+              "home_odds": -110,
+              "away_line": 47.5,
+              "away_odds": -110
+            }
+          ],
+          "updated_at": "2026-01-11T08:23:14-06:00"
+        }
+      ]
+    }
+  }
+}
