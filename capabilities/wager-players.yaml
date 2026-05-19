@@ -1,0 +1,298 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Wager API — Players
+  description: 'Wager API — Players. 5 operations. Lead operation: Get Depth Charts. Self-contained Naftiko capability covering
+    one Wager Api business surface.'
+  tags:
+  - Wager Api
+  - Players
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WAGER_API_API_KEY: WAGER_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wager-players
+    baseUri: https://api.wagerapi.com
+    description: Wager API — Players business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-depth-charts
+      path: /v1/depth-charts
+      operations:
+      - name: getdepthcharts
+        method: GET
+        description: Get Depth Charts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Sport identifier
+          required: true
+        - name: team_id
+          in: query
+          type: string
+          description: Filter by team identifier
+    - name: v1-injuries
+      path: /v1/injuries
+      operations:
+      - name: getinjuryreports
+        method: GET
+        description: Get Injury Reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Sport identifier
+          required: true
+        - name: team_id
+          in: query
+          type: string
+          description: Filter by team
+        - name: status
+          in: query
+          type: string
+          description: Filter by injury status
+    - name: v1-players
+      path: /v1/players
+      operations:
+      - name: getplayers
+        method: GET
+        description: Get Players
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Sport identifier
+          required: true
+        - name: team_id
+          in: query
+          type: string
+          description: Filter by team identifier
+        - name: search
+          in: query
+          type: string
+          description: Search players by name
+    - name: v1-players-playerId-projections
+      path: /v1/players/{playerId}/projections
+      operations:
+      - name: getplayerprojections
+        method: GET
+        description: Get Player Projections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: playerId
+          in: path
+          type: string
+          description: Player identifier
+          required: true
+        - name: game_id
+          in: query
+          type: string
+          description: Specific game for projections
+    - name: v1-players-playerId-stats
+      path: /v1/players/{playerId}/stats
+      operations:
+      - name: getplayerstats
+        method: GET
+        description: Get Player Statistics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: playerId
+          in: path
+          type: string
+          description: Player identifier
+          required: true
+        - name: season
+          in: query
+          type: string
+          description: Season year (e.g. 2025 or 2025-26)
+        - name: week
+          in: query
+          type: integer
+          description: Week number for weekly sports (NFL, NCAA)
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.WAGER_API_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: wager-players-rest
+    port: 8080
+    description: REST adapter for Wager API — Players. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/depth-charts
+      name: v1-depth-charts
+      description: REST surface for v1-depth-charts.
+      operations:
+      - method: GET
+        name: getdepthcharts
+        description: Get Depth Charts
+        call: wager-players.getdepthcharts
+        with:
+          sport: rest.sport
+          team_id: rest.team_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/injuries
+      name: v1-injuries
+      description: REST surface for v1-injuries.
+      operations:
+      - method: GET
+        name: getinjuryreports
+        description: Get Injury Reports
+        call: wager-players.getinjuryreports
+        with:
+          sport: rest.sport
+          team_id: rest.team_id
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/players
+      name: v1-players
+      description: REST surface for v1-players.
+      operations:
+      - method: GET
+        name: getplayers
+        description: Get Players
+        call: wager-players.getplayers
+        with:
+          sport: rest.sport
+          team_id: rest.team_id
+          search: rest.search
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/players/{playerid}/projections
+      name: v1-players-playerid-projections
+      description: REST surface for v1-players-playerId-projections.
+      operations:
+      - method: GET
+        name: getplayerprojections
+        description: Get Player Projections
+        call: wager-players.getplayerprojections
+        with:
+          playerId: rest.playerId
+          game_id: rest.game_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/players/{playerid}/stats
+      name: v1-players-playerid-stats
+      description: REST surface for v1-players-playerId-stats.
+      operations:
+      - method: GET
+        name: getplayerstats
+        description: Get Player Statistics
+        call: wager-players.getplayerstats
+        with:
+          playerId: rest.playerId
+          season: rest.season
+          week: rest.week
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wager-players-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Wager API — Players. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-depth-charts
+      description: Get Depth Charts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wager-players.getdepthcharts
+      with:
+        sport: tools.sport
+        team_id: tools.team_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-injury-reports
+      description: Get Injury Reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wager-players.getinjuryreports
+      with:
+        sport: tools.sport
+        team_id: tools.team_id
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-players
+      description: Get Players
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wager-players.getplayers
+      with:
+        sport: tools.sport
+        team_id: tools.team_id
+        search: tools.search
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-player-projections
+      description: Get Player Projections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wager-players.getplayerprojections
+      with:
+        playerId: tools.playerId
+        game_id: tools.game_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-player-statistics
+      description: Get Player Statistics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wager-players.getplayerstats
+      with:
+        playerId: tools.playerId
+        season: tools.season
+        week: tools.week
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,106 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Wager API — Odds
+  description: 'Wager API — Odds. 1 operations. Lead operation: Get Game Odds. Self-contained Naftiko capability covering
+    one Wager Api business surface.'
+  tags:
+  - Wager Api
+  - Odds
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WAGER_API_API_KEY: WAGER_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wager-odds
+    baseUri: https://api.wagerapi.com
+    description: Wager API — Odds business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-odds
+      path: /v1/odds
+      operations:
+      - name: getgameodds
+        method: GET
+        description: Get Game Odds
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Sport identifier
+          required: true
+        - name: league
+          in: query
+          type: string
+          description: League identifier (e.g. NFL, EPL, La Liga)
+        - name: game_id
+          in: query
+          type: string
+          description: Specific game identifier for targeted odds retrieval
+        - name: market
+          in: query
+          type: string
+          description: Odds market type filter
+        - name: date
+          in: query
+          type: string
+          description: Date filter in YYYY-MM-DD format
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.WAGER_API_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: wager-odds-rest
+    port: 8080
+    description: REST adapter for Wager API — Odds. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/odds
+      name: v1-odds
+      description: REST surface for v1-odds.
+      operations:
+      - method: GET
+        name: getgameodds
+        description: Get Game Odds
+        call: wager-odds.getgameodds
+        with:
+          sport: rest.sport
+          league: rest.league
+          game_id: rest.game_id
+          market: rest.market
+          date: rest.date
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wager-odds-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Wager API — Odds. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-game-odds
+      description: Get Game Odds
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wager-odds.getgameodds
+      with:
+        sport: tools.sport
+        league: tools.league
+        game_id: tools.game_id
+        market: tools.market
+        date: tools.date
+      outputParameters:
+      - type: object
+        mapping: $.

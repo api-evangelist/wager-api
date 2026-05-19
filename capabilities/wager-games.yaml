@@ -1,0 +1,100 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Wager API — Games
+  description: 'Wager API — Games. 1 operations. Lead operation: Get Games. Self-contained Naftiko capability covering one
+    Wager Api business surface.'
+  tags:
+  - Wager Api
+  - Games
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WAGER_API_API_KEY: WAGER_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wager-games
+    baseUri: https://api.wagerapi.com
+    description: Wager API — Games business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-games
+      path: /v1/games
+      operations:
+      - name: getgames
+        method: GET
+        description: Get Games
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Sport identifier
+          required: true
+        - name: date
+          in: query
+          type: string
+          description: Filter by game date in YYYY-MM-DD format
+        - name: week
+          in: query
+          type: integer
+          description: Week number for weekly sports
+        - name: status
+          in: query
+          type: string
+          description: Filter by game status
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.WAGER_API_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: wager-games-rest
+    port: 8080
+    description: REST adapter for Wager API — Games. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/games
+      name: v1-games
+      description: REST surface for v1-games.
+      operations:
+      - method: GET
+        name: getgames
+        description: Get Games
+        call: wager-games.getgames
+        with:
+          sport: rest.sport
+          date: rest.date
+          week: rest.week
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wager-games-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Wager API — Games. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-games
+      description: Get Games
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wager-games.getgames
+      with:
+        sport: tools.sport
+        date: tools.date
+        week: tools.week
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.

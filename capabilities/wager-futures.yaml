@@ -1,0 +1,94 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Wager API — Futures
+  description: 'Wager API — Futures. 1 operations. Lead operation: Get Futures Odds. Self-contained Naftiko capability covering
+    one Wager Api business surface.'
+  tags:
+  - Wager Api
+  - Futures
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WAGER_API_API_KEY: WAGER_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wager-futures
+    baseUri: https://api.wagerapi.com
+    description: Wager API — Futures business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-futures
+      path: /v1/futures
+      operations:
+      - name: getfuturesodds
+        method: GET
+        description: Get Futures Odds
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Sport identifier
+          required: true
+        - name: market
+          in: query
+          type: string
+          description: Futures market type (e.g. super_bowl_winner, mvp, division_winner)
+        - name: team_id
+          in: query
+          type: string
+          description: Team identifier filter
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.WAGER_API_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: wager-futures-rest
+    port: 8080
+    description: REST adapter for Wager API — Futures. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/futures
+      name: v1-futures
+      description: REST surface for v1-futures.
+      operations:
+      - method: GET
+        name: getfuturesodds
+        description: Get Futures Odds
+        call: wager-futures.getfuturesodds
+        with:
+          sport: rest.sport
+          market: rest.market
+          team_id: rest.team_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wager-futures-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Wager API — Futures. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-futures-odds
+      description: Get Futures Odds
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wager-futures.getfuturesodds
+      with:
+        sport: tools.sport
+        market: tools.market
+        team_id: tools.team_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,100 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Wager API — Props
+  description: 'Wager API — Props. 1 operations. Lead operation: Get Player Props. Self-contained Naftiko capability covering
+    one Wager Api business surface.'
+  tags:
+  - Wager Api
+  - Props
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WAGER_API_API_KEY: WAGER_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wager-props
+    baseUri: https://api.wagerapi.com
+    description: Wager API — Props business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-props
+      path: /v1/props
+      operations:
+      - name: getplayerprops
+        method: GET
+        description: Get Player Props
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Sport identifier
+          required: true
+        - name: game_id
+          in: query
+          type: string
+          description: Specific game identifier
+        - name: player_id
+          in: query
+          type: string
+          description: Player identifier for targeted prop lookup
+        - name: market
+          in: query
+          type: string
+          description: Prop market type (e.g. passing_yards, rushing_yards, points)
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.WAGER_API_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: wager-props-rest
+    port: 8080
+    description: REST adapter for Wager API — Props. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/props
+      name: v1-props
+      description: REST surface for v1-props.
+      operations:
+      - method: GET
+        name: getplayerprops
+        description: Get Player Props
+        call: wager-props.getplayerprops
+        with:
+          sport: rest.sport
+          game_id: rest.game_id
+          player_id: rest.player_id
+          market: rest.market
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wager-props-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Wager API — Props. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-player-props
+      description: Get Player Props
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wager-props.getplayerprops
+      with:
+        sport: tools.sport
+        game_id: tools.game_id
+        player_id: tools.player_id
+        market: tools.market
+      outputParameters:
+      - type: object
+        mapping: $.
