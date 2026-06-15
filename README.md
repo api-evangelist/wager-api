@@ -1,8 +1,8 @@
-# Wager API
+# Wager API (wager-api)
 
-Wager API is a modern sports betting data platform that enables developers to build sports betting applications, bots, and predictive models with a single API. The platform provides real-time sports odds including spreads, moneylines, totals, player props, and futures markets across NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf.
+Wager API is a modern sports betting data platform that enables developers to build sports betting applications, bots, and predictive models with a single API. The platform provides real-time sports odds including spreads, moneylines, totals, player props, and futures markets across NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf. Wager API also delivers player statistics, projections, fantasy data, injury reports, lineup updates, game schedules, and depth charts, making it a comprehensive data source for sports betting and fantasy sports applications.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/apis.yml)
 
 ## Scope
 
@@ -25,53 +25,57 @@ Wager API is a modern sports betting data platform that enables developers to bu
 ## Timestamps
 
 - **Created:** 2025-02-08
-- **Modified:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
-| API | Description |
-|---|---|
-| [Wager API - Sports Odds](https://wagerapi.com/) | Real-time game odds, player props, and futures for NFL, NCAA, NBA, MLB, NHL, soccer, tennis, golf |
-| [Wager API - Fantasy Sports Data](https://wagerapi.com/) | Player statistics, projections, injury reports, lineups, and depth charts |
+### Wager API - Sports Odds
 
-## OpenAPI Specifications
+Real-time sports odds for game spreads, moneylines, totals, alternate spreads, alternate totals, half-time odds, winning margins, and player props across major sports including NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf. Supports thousands of futures markets including Super Bowl, NCAA Playoffs, NBA Finals, Stanley Cup, Premier League, and major tennis tournaments.
 
-- [wager-api-openapi.yml](openapi/wager-api-openapi.yml) — Complete Wager API including odds, props, futures, players, injuries, games, and depth charts
+- **Human URL:** [https://wagerapi.com/](https://wagerapi.com/)
+- **Base URL:** `https://api.wagerapi.com`
 
-## JSON Schemas
+#### Tags
 
-- [wager-api-game-odds-schema.json](json-schema/wager-api-game-odds-schema.json) — Game odds data model with markets schema
+- Sports Odds
+- Sports Betting
+- NFL
+- NBA
+- MLB
+- NHL
+- Soccer
+- Tennis
+- Golf
 
-## JSON Structure
+#### Properties
 
-- [wager-api-game-odds-structure.json](json-structure/wager-api-game-odds-structure.json) — Game odds structure documentation
+- [Documentation](https://wagerapi.com/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/openapi/wager-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/json-schema/wager-api-game-odds-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Postman Collection](collections/wager-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/wager-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## JSON-LD Context
+### Wager API - Fantasy Sports Data
 
-- [wager-api-context.jsonld](json-ld/wager-api-context.jsonld) — Linked data context mapping sports betting vocabulary to schema.org
+Fantasy sports data feed providing player statistics, projections, historical records, injury reports, lineup updates, game results and schedules, and depth charts. Used by fantasy sports applications, daily fantasy platforms, and sports analytics models to access comprehensive player and team data.
 
-## Examples
+- **Human URL:** [https://wagerapi.com/](https://wagerapi.com/)
+- **Base URL:** `https://api.wagerapi.com`
 
-- [wager-api-get-game-odds-example.json](examples/wager-api-get-game-odds-example.json) — Get NFL game odds with spread, moneyline, and totals
-- [wager-api-get-player-props-example.json](examples/wager-api-get-player-props-example.json) — Get player prop odds for a game
+#### Tags
 
-## Spectral Rules
+- Fantasy Sports
+- Sports Data
+- Player Statistics
+- Injury Reports
 
-- [wager-api-rules.yml](rules/wager-api-rules.yml) — Spectral ruleset enforcing Wager API conventions
+#### Properties
 
-## Naftiko Capabilities
-
-### Shared Definitions
-
-- [capabilities/shared/wager-api.yaml](capabilities/shared/wager-api.yaml) — Wager API consumed definitions (9 operations)
-
-### Workflow Capabilities
-
-- [capabilities/sports-betting.yaml](capabilities/sports-betting.yaml) — Comprehensive sports betting workflow with odds, props, futures, injuries, stats, and schedules (9 REST endpoints, 8 MCP tools)
-
-## Vocabulary
-
-- [wager-api-vocabulary.yml](vocabulary/wager-api-vocabulary.yml) — Sports betting odds, fantasy sports, and sports data vocabulary
+- [Documentation](https://wagerapi.com/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/openapi/wager-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/wager-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/wager-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
@@ -81,5 +85,4 @@ Wager API is a modern sports betting data platform that enables developers to bu
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com

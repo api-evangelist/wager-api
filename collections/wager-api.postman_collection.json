@@ -1,0 +1,1923 @@
+{
+  "item": [
+    {
+      "id": "40d88f0d-16ec-4915-9de7-9e020a5aef49",
+      "name": "Odds",
+      "description": {
+        "content": "Real-time game odds including spreads, moneylines, and totals",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "774e1212-f805-40d2-bc55-e8eb730f3b3f",
+          "name": "Get Game Odds",
+          "request": {
+            "name": "Get Game Odds",
+            "description": {
+              "content": "Returns real-time game odds for a specified sport and league, including spreads, moneylines, and totals from major sportsbooks. Supports alternate spreads, alternate totals, half-time lines, and winning margin markets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "odds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "league",
+                  "value": "<string>",
+                  "description": "League identifier (e.g. NFL, EPL, La Liga)"
+                },
+                {
+                  "disabled": false,
+                  "key": "game_id",
+                  "value": "<string>",
+                  "description": "Specific game identifier for targeted odds retrieval"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "Odds market type filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Date filter in YYYY-MM-DD format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdae3b31-0018-4d98-bb02-fc15d5c51efb",
+              "name": "Array of game odds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"game_id\": \"string\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"home_team\": \"string\",\n      \"away_team\": \"string\",\n      \"game_date\": \"1983-07-30T22:37:03.053Z\",\n      \"markets\": [\n        {\n          \"market\": \"spread\",\n          \"sportsbook\": \"DraftKings\",\n          \"home_line\": 5988.634124125699,\n          \"home_odds\": -110,\n          \"away_line\": 1875.8142584132177,\n          \"away_odds\": -110\n        },\n        {\n          \"market\": \"spread\",\n          \"sportsbook\": \"DraftKings\",\n          \"home_line\": 6329.08501392504,\n          \"home_odds\": -110,\n          \"away_line\": 3697.1192845847213,\n          \"away_odds\": -110\n        }\n      ],\n      \"updated_at\": \"1949-01-17T01:01:09.311Z\"\n    },\n    {\n      \"game_id\": \"string\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"home_team\": \"string\",\n      \"away_team\": \"string\",\n      \"game_date\": \"1985-08-10T11:18:48.253Z\",\n      \"markets\": [\n        {\n          \"market\": \"spread\",\n          \"sportsbook\": \"DraftKings\",\n          \"home_line\": 9207.188574369638,\n          \"home_odds\": -110,\n          \"away_line\": 8859.72425214998,\n          \"away_odds\": -110\n        },\n        {\n          \"market\": \"spread\",\n          \"sportsbook\": \"DraftKings\",\n          \"home_line\": 9904.474029801255,\n          \"home_odds\": -110,\n          \"away_line\": 3284.896129095598,\n          \"away_odds\": -110\n        }\n      ],\n      \"updated_at\": \"1958-08-21T07:00:55.975Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04159fc4-7dd8-4196-985a-8a3476696175",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aebdb9e0-ea22-4759-88ec-4a4f8a40dcea",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6591d03f-3649-4487-b51b-70d12f216a37",
+      "name": "Props",
+      "description": {
+        "content": "Player proposition odds",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50a94e24-f6f0-450a-82bf-3ec5797270ff",
+          "name": "Get Player Props",
+          "request": {
+            "name": "Get Player Props",
+            "description": {
+              "content": "Returns player proposition odds for a specified sport including passing yards, rushing yards, receiving yards, touchdowns, points, rebounds, assists, hits, home runs, and other player-specific betting markets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "props"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "game_id",
+                  "value": "<string>",
+                  "description": "Specific game identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "player_id",
+                  "value": "<string>",
+                  "description": "Player identifier for targeted prop lookup"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "Prop market type (e.g. passing_yards, rushing_yards, points)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1cf2d79c-b04e-40a9-98c0-231156a9eb1e",
+              "name": "Array of player proposition odds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nba"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "player_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"prop_id\": \"string\",\n      \"game_id\": \"string\",\n      \"player_id\": \"string\",\n      \"player_name\": \"string\",\n      \"team\": \"string\",\n      \"market\": \"passing_yards\",\n      \"line\": 247.5,\n      \"over_odds\": -115,\n      \"under_odds\": -105,\n      \"sportsbook\": \"string\",\n      \"updated_at\": \"2019-07-16T12:39:19.995Z\"\n    },\n    {\n      \"prop_id\": \"string\",\n      \"game_id\": \"string\",\n      \"player_id\": \"string\",\n      \"player_name\": \"string\",\n      \"team\": \"string\",\n      \"market\": \"passing_yards\",\n      \"line\": 247.5,\n      \"over_odds\": -115,\n      \"under_odds\": -105,\n      \"sportsbook\": \"string\",\n      \"updated_at\": \"2011-04-17T07:28:47.918Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b97e0573-a7e2-4d75-a1f9-2e224babeba1",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nba"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "player_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c7bbf7fc-64b5-46a0-9267-a2683e3a1cb1",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nba"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "player_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3c52cbe0-c1a4-400d-8898-9ea17c9e19a6",
+      "name": "Futures",
+      "description": {
+        "content": "Season and championship futures markets",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77cff476-124c-4586-9b76-54d55cfd4630",
+          "name": "Get Futures Odds",
+          "request": {
+            "name": "Get Futures Odds",
+            "description": {
+              "content": "Returns futures odds for season and championship markets across thousands of markets including Super Bowl winner, NCAA Championship, NBA Finals, Stanley Cup, Premier League title, Wimbledon, US Open, and more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "futures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "Futures market type (e.g. super_bowl_winner, mvp, division_winner)"
+                },
+                {
+                  "disabled": false,
+                  "key": "team_id",
+                  "value": "<string>",
+                  "description": "Team identifier filter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d63648c-7647-4da8-a948-acdaf44cb106",
+              "name": "Array of futures market odds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "futures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"futures_id\": \"string\",\n      \"sport\": \"string\",\n      \"market\": \"super_bowl_winner\",\n      \"display_name\": \"Super Bowl Winner\",\n      \"selections\": [\n        {\n          \"selection_id\": \"string\",\n          \"name\": \"string\",\n          \"odds\": 600,\n          \"sportsbook\": \"string\"\n        },\n        {\n          \"selection_id\": \"string\",\n          \"name\": \"string\",\n          \"odds\": 600,\n          \"sportsbook\": \"string\"\n        }\n      ],\n      \"updated_at\": \"1971-07-11T16:18:41.182Z\"\n    },\n    {\n      \"futures_id\": \"string\",\n      \"sport\": \"string\",\n      \"market\": \"super_bowl_winner\",\n      \"display_name\": \"Super Bowl Winner\",\n      \"selections\": [\n        {\n          \"selection_id\": \"string\",\n          \"name\": \"string\",\n          \"odds\": 600,\n          \"sportsbook\": \"string\"\n        },\n        {\n          \"selection_id\": \"string\",\n          \"name\": \"string\",\n          \"odds\": 600,\n          \"sportsbook\": \"string\"\n        }\n      ],\n      \"updated_at\": \"1986-04-15T16:11:42.014Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58812011-bee0-4a8e-9404-6aced02fbe1e",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "futures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de54b748-e7d8-4591-9647-b2ff1b1868b8",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "futures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ebcb0202-96db-45c4-b377-010905b6483e",
+      "name": "Players",
+      "description": {
+        "content": "Player statistics, projections, and injury information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd847717-558d-47f7-baad-3866235981cf",
+          "name": "Get Players",
+          "request": {
+            "name": "Get Players",
+            "description": {
+              "content": "Returns player information including profile data, current team, position, and status. Used to resolve player IDs for props and fantasy data endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "players"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "team_id",
+                  "value": "<string>",
+                  "description": "Filter by team identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search players by name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb07022d-b8b8-4a4c-8340-371be8e363aa",
+              "name": "Array of players",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "players"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"player_id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"full_name\": \"string\",\n      \"position\": \"QB\",\n      \"team_id\": \"string\",\n      \"team_name\": \"string\",\n      \"sport\": \"string\",\n      \"status\": \"inactive\"\n    },\n    {\n      \"player_id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"full_name\": \"string\",\n      \"position\": \"QB\",\n      \"team_id\": \"string\",\n      \"team_name\": \"string\",\n      \"sport\": \"string\",\n      \"status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68109161-f319-407d-96a1-e97cb23613dc",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "players"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a931524-6c05-45a7-b1fe-c2f07d18eab4",
+          "name": "Get Player Statistics",
+          "request": {
+            "name": "Get Player Statistics",
+            "description": {
+              "content": "Returns player statistics for a specific player including current season stats, game-by-game logs, and historical performance data. Available stats vary by sport.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "players",
+                ":playerId",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "season",
+                  "value": "<string>",
+                  "description": "Season year (e.g. 2025 or 2025-26)"
+                },
+                {
+                  "disabled": false,
+                  "key": "week",
+                  "value": "<integer>",
+                  "description": "Week number for weekly sports (NFL, NCAA)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playerId",
+                  "description": "(Required) Player identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fbb0a41e-fb06-4c80-89e6-adf91c1a52ed",
+              "name": "Player statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "players",
+                    ":playerId",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "week",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) Player identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"player_id\": \"string\",\n  \"player_name\": \"string\",\n  \"season\": \"string\",\n  \"stats\": {\n    \"key_0\": 1593.247425264551,\n    \"key_1\": 5791.212998101248\n  },\n  \"game_log\": [\n    {\n      \"game_id\": \"string\",\n      \"game_date\": \"1999-07-03\",\n      \"opponent\": \"string\",\n      \"stats\": {\n        \"key_0\": 3586.4329286086636,\n        \"key_1\": 8065.197884958179,\n        \"key_2\": 8854.206786077864\n      }\n    },\n    {\n      \"game_id\": \"string\",\n      \"game_date\": \"1956-08-18\",\n      \"opponent\": \"string\",\n      \"stats\": {\n        \"key_0\": 2376.1479231561334,\n        \"key_1\": 2925.121367255631\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abb5dcee-30f9-4a55-8562-6d2453007a8d",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "players",
+                    ":playerId",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "week",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) Player identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba608a6a-2f3d-43a6-8403-2ecb5ae1a2e1",
+              "name": "Player not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "players",
+                    ":playerId",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "week",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) Player identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0991f032-adcc-45e6-aa4a-5518bdd84085",
+          "name": "Get Player Projections",
+          "request": {
+            "name": "Get Player Projections",
+            "description": {
+              "content": "Returns statistical projections for a specific player for upcoming games including projected fantasy points, statistical categories, and model confidence. Used for fantasy sports lineup decisions and prop betting analysis.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "players",
+                ":playerId",
+                "projections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "game_id",
+                  "value": "<string>",
+                  "description": "Specific game for projections"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playerId",
+                  "description": "(Required) Player identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dcebb678-2cb6-40f0-bf16-dd32e505cd92",
+              "name": "Player projections for upcoming games",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "players",
+                    ":playerId",
+                    "projections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) Player identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"player_id\": \"string\",\n  \"player_name\": \"string\",\n  \"projections\": [\n    {\n      \"game_id\": \"string\",\n      \"opponent\": \"string\",\n      \"game_date\": \"2021-08-23\",\n      \"fantasy_points\": 3041.4478668937904,\n      \"stats\": {\n        \"key_0\": 3319.0249445424956\n      }\n    },\n    {\n      \"game_id\": \"string\",\n      \"opponent\": \"string\",\n      \"game_date\": \"1991-12-22\",\n      \"fantasy_points\": 5612.238754334021,\n      \"stats\": {\n        \"key_0\": 4324.7745271742015,\n        \"key_1\": 1895.106229476412,\n        \"key_2\": 3516.6894865816757\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b18710e-87b1-41b9-839e-7a152050ba7c",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "players",
+                    ":playerId",
+                    "projections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) Player identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "63fd3368-c2ab-442e-8bdf-0864200ac669",
+              "name": "Player not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "players",
+                    ":playerId",
+                    "projections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) Player identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "217246ac-f1b8-41f6-b35e-1898081a487d",
+          "name": "Get Injury Reports",
+          "request": {
+            "name": "Get Injury Reports",
+            "description": {
+              "content": "Returns current injury reports for players across a specified sport, including injury type, practice status, game status, and expected return timeline. Critical data for fantasy sports lineup decisions and prop betting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "injuries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "team_id",
+                  "value": "<string>",
+                  "description": "Filter by team"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by injury status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f600477b-dfd3-4bf4-934f-ac71d272c043",
+              "name": "Array of injury reports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "injuries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"player_id\": \"string\",\n      \"player_name\": \"string\",\n      \"team\": \"string\",\n      \"position\": \"string\",\n      \"injury_type\": \"Hamstring\",\n      \"injury_status\": \"day_to_day\",\n      \"practice_status\": \"Limited\",\n      \"return_timeline\": \"string\",\n      \"updated_at\": \"1947-03-12T20:10:18.460Z\"\n    },\n    {\n      \"player_id\": \"string\",\n      \"player_name\": \"string\",\n      \"team\": \"string\",\n      \"position\": \"string\",\n      \"injury_type\": \"Hamstring\",\n      \"injury_status\": \"questionable\",\n      \"practice_status\": \"Limited\",\n      \"return_timeline\": \"string\",\n      \"updated_at\": \"1973-01-28T05:24:58.070Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6deb455-6b1d-4e89-8ec4-ef0803a468d8",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "injuries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78d77eed-10ff-4ffa-873a-f00012fc4cc8",
+          "name": "Get Depth Charts",
+          "request": {
+            "name": "Get Depth Charts",
+            "description": {
+              "content": "Returns current depth charts for teams in a specified sport, showing positional depth ordering and starter designations. Used for lineup analysis and fantasy sports applications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "depth-charts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "team_id",
+                  "value": "<string>",
+                  "description": "Filter by team identifier"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8087c14b-72fc-4bb5-92b7-6845c6394585",
+              "name": "Array of depth chart entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "depth-charts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"team_id\": \"string\",\n      \"team_name\": \"string\",\n      \"sport\": \"string\",\n      \"positions\": [\n        {\n          \"position\": \"string\",\n          \"players\": [\n            {\n              \"depth_order\": 743,\n              \"player_id\": \"string\",\n              \"player_name\": \"string\",\n              \"status\": \"string\"\n            },\n            {\n              \"depth_order\": 2240,\n              \"player_id\": \"string\",\n              \"player_name\": \"string\",\n              \"status\": \"string\"\n            }\n          ]\n        },\n        {\n          \"position\": \"string\",\n          \"players\": [\n            {\n              \"depth_order\": 6442,\n              \"player_id\": \"string\",\n              \"player_name\": \"string\",\n              \"status\": \"string\"\n            },\n            {\n              \"depth_order\": 6673,\n              \"player_id\": \"string\",\n              \"player_name\": \"string\",\n              \"status\": \"string\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"team_id\": \"string\",\n      \"team_name\": \"string\",\n      \"sport\": \"string\",\n      \"positions\": [\n        {\n          \"position\": \"string\",\n          \"players\": [\n            {\n              \"depth_order\": 8580,\n              \"player_id\": \"string\",\n              \"player_name\": \"string\",\n              \"status\": \"string\"\n            },\n            {\n              \"depth_order\": 1115,\n              \"player_id\": \"string\",\n              \"player_name\": \"string\",\n              \"status\": \"string\"\n            }\n          ]\n        },\n        {\n          \"position\": \"string\",\n          \"players\": [\n            {\n              \"depth_order\": 1726,\n              \"player_id\": \"string\",\n              \"player_name\": \"string\",\n              \"status\": \"string\"\n            },\n            {\n              \"depth_order\": 6133,\n              \"player_id\": \"string\",\n              \"player_name\": \"string\",\n              \"status\": \"string\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aca9d75e-ee82-4881-a788-484d350af18a",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "depth-charts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0911e51a-2d8a-44d0-ac48-d6a2fb3941cc",
+      "name": "Games",
+      "description": {
+        "content": "Game schedules, results, and team information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6164736-be74-4426-bd2f-9f8ca748284b",
+          "name": "Get Games",
+          "request": {
+            "name": "Get Games",
+            "description": {
+              "content": "Returns game schedules and results for a specified sport including home and away teams, game date and time, venue, final scores for completed games, and game status. Used to build game selectors and schedule displays.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "games"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Filter by game date in YYYY-MM-DD format"
+                },
+                {
+                  "disabled": false,
+                  "key": "week",
+                  "value": "<integer>",
+                  "description": "Week number for weekly sports"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by game status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7efe1922-5141-44d9-9770-a1b35ef2bec7",
+              "name": "Array of games",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nba"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "week",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"game_id\": \"string\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"home_team_id\": \"string\",\n      \"home_team_name\": \"string\",\n      \"away_team_id\": \"string\",\n      \"away_team_name\": \"string\",\n      \"game_date\": \"2013-06-25T05:18:28.722Z\",\n      \"venue\": \"string\",\n      \"status\": \"scheduled\",\n      \"home_score\": 8855,\n      \"away_score\": 9401\n    },\n    {\n      \"game_id\": \"string\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"home_team_id\": \"string\",\n      \"home_team_name\": \"string\",\n      \"away_team_id\": \"string\",\n      \"away_team_name\": \"string\",\n      \"game_date\": \"1963-08-27T04:14:31.321Z\",\n      \"venue\": \"string\",\n      \"status\": \"final\",\n      \"home_score\": 1056,\n      \"away_score\": 4833\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "243b7e54-334a-4e16-9a81-3f28ae029d75",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nba"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "week",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wagerapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c07a6e1-fc19-47b0-9a2f-723ed393c496",
+    "name": "Wager API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.\n\nContact Support:\n Email: contact@wagerapi.com",
+      "type": "text/plain"
+    }
+  }
+}
