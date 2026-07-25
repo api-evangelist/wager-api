@@ -1,0 +1,118 @@
+openapi: 3.0.3
+info:
+  title: Wager Futures API
+  description: Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.
+  version: 1.0.0
+  contact:
+    url: https://wagerapi.com/
+    email: contact@wagerapi.com
+servers:
+- url: https://api.wagerapi.com
+  description: Wager API Production
+security:
+- apiKey: []
+tags:
+- name: Futures
+  description: Season and championship futures markets
+paths:
+  /v1/futures:
+    get:
+      operationId: getFuturesOdds
+      summary: Get Futures Odds
+      description: Returns futures odds for season and championship markets across thousands of markets including Super Bowl winner, NCAA Championship, NBA Finals, Stanley Cup, Premier League title, Wimbledon, US Open, and more.
+      tags:
+      - Futures
+      parameters:
+      - name: sport
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - nfl
+          - ncaaf
+          - ncaab
+          - nba
+          - mlb
+          - nhl
+          - soccer
+          - tennis
+          - golf
+        description: Sport identifier
+        example: nfl
+      - name: market
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Futures market type (e.g. super_bowl_winner, mvp, division_winner)
+      - name: team_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Team identifier filter
+      responses:
+        '200':
+          description: Array of futures market odds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FuturesOdds'
+        '401':
+          description: Unauthorized - invalid API key
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    FuturesSelection:
+      type: object
+      properties:
+        selection_id:
+          type: string
+          description: Selection identifier
+        name:
+          type: string
+          description: Team or player name
+        odds:
+          type: integer
+          description: American odds
+          example: 600
+        sportsbook:
+          type: string
+          description: Sportsbook name
+    FuturesOdds:
+      type: object
+      properties:
+        futures_id:
+          type: string
+          description: Unique futures identifier
+        sport:
+          type: string
+          description: Sport identifier
+        market:
+          type: string
+          description: Futures market name
+          example: super_bowl_winner
+        display_name:
+          type: string
+          description: Human-readable market name
+          example: Super Bowl Winner
+        selections:
+          type: array
+          items:
+            $ref: '#/components/schemas/FuturesSelection'
+        updated_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key obtained from Wager API, request via wagerapi.com

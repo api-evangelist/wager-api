@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: Wager Futures Props API
+  description: Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.
+  version: 1.0.0
+  contact:
+    url: https://wagerapi.com/
+    email: contact@wagerapi.com
+servers:
+- url: https://api.wagerapi.com
+  description: Wager API Production
+security:
+- apiKey: []
+tags:
+- name: Props
+  description: Player proposition odds
+paths:
+  /v1/props:
+    get:
+      operationId: getPlayerProps
+      summary: Get Player Props
+      description: Returns player proposition odds for a specified sport including passing yards, rushing yards, receiving yards, touchdowns, points, rebounds, assists, hits, home runs, and other player-specific betting markets.
+      tags:
+      - Props
+      parameters:
+      - name: sport
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - nfl
+          - ncaaf
+          - ncaab
+          - nba
+          - mlb
+          - nhl
+          - soccer
+          - tennis
+          - golf
+        description: Sport identifier
+        example: nba
+      - name: game_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Specific game identifier
+      - name: player_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Player identifier for targeted prop lookup
+      - name: market
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Prop market type (e.g. passing_yards, rushing_yards, points)
+      responses:
+        '200':
+          description: Array of player proposition odds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlayerProp'
+        '401':
+          description: Unauthorized - invalid API key
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    PlayerProp:
+      type: object
+      properties:
+        prop_id:
+          type: string
+          description: Unique prop identifier
+        game_id:
+          type: string
+          description: Associated game identifier
+        player_id:
+          type: string
+          description: Player identifier
+        player_name:
+          type: string
+          description: Player full name
+        team:
+          type: string
+          description: Player team name
+        market:
+          type: string
+          description: Prop market type
+          example: passing_yards
+        line:
+          type: number
+          format: double
+          description: Prop line value
+          example: 247.5
+        over_odds:
+          type: integer
+          description: Over American odds
+          example: -115
+        under_odds:
+          type: integer
+          description: Under American odds
+          example: -105
+        sportsbook:
+          type: string
+          description: Sportsbook offering this prop
+        updated_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key obtained from Wager API, request via wagerapi.com

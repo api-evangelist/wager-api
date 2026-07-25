@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: Wager Futures Odds API
+  description: Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.
+  version: 1.0.0
+  contact:
+    url: https://wagerapi.com/
+    email: contact@wagerapi.com
+servers:
+- url: https://api.wagerapi.com
+  description: Wager API Production
+security:
+- apiKey: []
+tags:
+- name: Odds
+  description: Real-time game odds including spreads, moneylines, and totals
+paths:
+  /v1/odds:
+    get:
+      operationId: getGameOdds
+      summary: Get Game Odds
+      description: Returns real-time game odds for a specified sport and league, including spreads, moneylines, and totals from major sportsbooks. Supports alternate spreads, alternate totals, half-time lines, and winning margin markets.
+      tags:
+      - Odds
+      parameters:
+      - name: sport
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - nfl
+          - ncaaf
+          - ncaab
+          - nba
+          - mlb
+          - nhl
+          - soccer
+          - tennis
+          - golf
+        description: Sport identifier
+        example: nfl
+      - name: league
+        in: query
+        required: false
+        schema:
+          type: string
+        description: League identifier (e.g. NFL, EPL, La Liga)
+      - name: game_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Specific game identifier for targeted odds retrieval
+      - name: market
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - spread
+          - moneyline
+          - total
+          - alt_spread
+          - alt_total
+          - halftime
+          - winning_margin
+        description: Odds market type filter
+      - name: date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: Date filter in YYYY-MM-DD format
+      responses:
+        '200':
+          description: Array of game odds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GameOdds'
+        '401':
+          description: Unauthorized - invalid API key
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    GameOdds:
+      type: object
+      properties:
+        game_id:
+          type: string
+          description: Unique game identifier
+        sport:
+          type: string
+          description: Sport identifier
+        league:
+          type: string
+          description: League name
+        home_team:
+          type: string
+          description: Home team name
+        away_team:
+          type: string
+          description: Away team name
+        game_date:
+          type: string
+          format: date-time
+          description: Game date and time in ISO 8601 format
+        markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/OddsMarket'
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last odds update
+    OddsMarket:
+      type: object
+      properties:
+        market:
+          type: string
+          description: Market type (spread, moneyline, total)
+          example: spread
+        sportsbook:
+          type: string
+          description: Sportsbook name
+          example: DraftKings
+        home_line:
+          type: number
+          format: double
+          description: Home team line (spread or total)
+        home_odds:
+          type: integer
+          description: Home team American odds
+          example: -110
+        away_line:
+          type: number
+          format: double
+          description: Away team line
+        away_odds:
+          type: integer
+          description: Away team American odds
+          example: -110
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key obtained from Wager API, request via wagerapi.com

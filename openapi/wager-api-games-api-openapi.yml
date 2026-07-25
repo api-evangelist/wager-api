@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: Wager Futures Games API
+  description: Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.
+  version: 1.0.0
+  contact:
+    url: https://wagerapi.com/
+    email: contact@wagerapi.com
+servers:
+- url: https://api.wagerapi.com
+  description: Wager API Production
+security:
+- apiKey: []
+tags:
+- name: Games
+  description: Game schedules, results, and team information
+paths:
+  /v1/games:
+    get:
+      operationId: getGames
+      summary: Get Games
+      description: Returns game schedules and results for a specified sport including home and away teams, game date and time, venue, final scores for completed games, and game status. Used to build game selectors and schedule displays.
+      tags:
+      - Games
+      parameters:
+      - name: sport
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - nfl
+          - ncaaf
+          - ncaab
+          - nba
+          - mlb
+          - nhl
+          - soccer
+          - tennis
+          - golf
+        description: Sport identifier
+        example: nba
+      - name: date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: Filter by game date in YYYY-MM-DD format
+      - name: week
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Week number for weekly sports
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - scheduled
+          - in_progress
+          - final
+        description: Filter by game status
+      responses:
+        '200':
+          description: Array of games
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Game'
+        '401':
+          description: Unauthorized - invalid API key
+components:
+  schemas:
+    Game:
+      type: object
+      properties:
+        game_id:
+          type: string
+          description: Unique game identifier
+        sport:
+          type: string
+          description: Sport identifier
+        league:
+          type: string
+          description: League name
+        home_team_id:
+          type: string
+        home_team_name:
+          type: string
+        away_team_id:
+          type: string
+        away_team_name:
+          type: string
+        game_date:
+          type: string
+          format: date-time
+          description: Game date and time
+        venue:
+          type: string
+          description: Stadium or venue name
+        status:
+          type: string
+          enum:
+          - scheduled
+          - in_progress
+          - final
+        home_score:
+          type: integer
+          description: Home team score (completed games)
+        away_score:
+          type: integer
+          description: Away team score (completed games)
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key obtained from Wager API, request via wagerapi.com
