@@ -1,0 +1,786 @@
+openapi: 3.0.3
+info:
+  title: Wager API
+  description: >-
+    Wager API is a modern sports betting data platform providing real-time sports odds,
+    player props, futures markets, and fantasy sports data. The API enables developers
+    to build sports betting applications, bots, and predictive models with a single
+    integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with
+    real-time spreads, moneylines, totals, player statistics, projections, injury
+    reports, and depth charts.
+  version: 1.0.0
+  contact:
+    url: https://wagerapi.com/
+    email: contact@wagerapi.com
+servers:
+  - url: https://api.wagerapi.com
+    description: Wager API Production
+tags:
+  - name: Odds
+    description: Real-time game odds including spreads, moneylines, and totals
+  - name: Props
+    description: Player proposition odds
+  - name: Futures
+    description: Season and championship futures markets
+  - name: Players
+    description: Player statistics, projections, and injury information
+  - name: Games
+    description: Game schedules, results, and team information
+security:
+  - apiKey: []
+paths:
+  /v1/odds:
+    get:
+      operationId: getGameOdds
+      summary: Get Game Odds
+      description: >-
+        Returns real-time game odds for a specified sport and league, including
+        spreads, moneylines, and totals from major sportsbooks. Supports alternate
+        spreads, alternate totals, half-time lines, and winning margin markets.
+      tags:
+        - Odds
+      parameters:
+        - name: sport
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [nfl, ncaaf, ncaab, nba, mlb, nhl, soccer, tennis, golf]
+          description: Sport identifier
+          example: "nfl"
+        - name: league
+          in: query
+          required: false
+          schema:
+            type: string
+          description: League identifier (e.g. NFL, EPL, La Liga)
+        - name: game_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Specific game identifier for targeted odds retrieval
+        - name: market
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [spread, moneyline, total, alt_spread, alt_total, halftime, winning_margin]
+          description: Odds market type filter
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Date filter in YYYY-MM-DD format
+      responses:
+        '200':
+          description: Array of game odds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GameOdds'
+        '401':
+          description: Unauthorized - invalid API key
+        '429':
+          description: Rate limit exceeded
+  /v1/props:
+    get:
+      operationId: getPlayerProps
+      summary: Get Player Props
+      description: >-
+        Returns player proposition odds for a specified sport including passing
+        yards, rushing yards, receiving yards, touchdowns, points, rebounds,
+        assists, hits, home runs, and other player-specific betting markets.
+      tags:
+        - Props
+      parameters:
+        - name: sport
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [nfl, ncaaf, ncaab, nba, mlb, nhl, soccer, tennis, golf]
+          description: Sport identifier
+          example: "nba"
+        - name: game_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Specific game identifier
+        - name: player_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Player identifier for targeted prop lookup
+        - name: market
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Prop market type (e.g. passing_yards, rushing_yards, points)
+      responses:
+        '200':
+          description: Array of player proposition odds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlayerProp'
+        '401':
+          description: Unauthorized - invalid API key
+        '429':
+          description: Rate limit exceeded
+  /v1/futures:
+    get:
+      operationId: getFuturesOdds
+      summary: Get Futures Odds
+      description: >-
+        Returns futures odds for season and championship markets across thousands
+        of markets including Super Bowl winner, NCAA Championship, NBA Finals,
+        Stanley Cup, Premier League title, Wimbledon, US Open, and more.
+      tags:
+        - Futures
+      parameters:
+        - name: sport
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [nfl, ncaaf, ncaab, nba, mlb, nhl, soccer, tennis, golf]
+          description: Sport identifier
+          example: "nfl"
+        - name: market
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Futures market type (e.g. super_bowl_winner, mvp, division_winner)
+        - name: team_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Team identifier filter
+      responses:
+        '200':
+          description: Array of futures market odds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FuturesOdds'
+        '401':
+          description: Unauthorized - invalid API key
+        '429':
+          description: Rate limit exceeded
+  /v1/players:
+    get:
+      operationId: getPlayers
+      summary: Get Players
+      description: >-
+        Returns player information including profile data, current team, position,
+        and status. Used to resolve player IDs for props and fantasy data endpoints.
+      tags:
+        - Players
+      parameters:
+        - name: sport
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [nfl, ncaaf, ncaab, nba, mlb, nhl, soccer, tennis, golf]
+          description: Sport identifier
+        - name: team_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by team identifier
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Search players by name
+      responses:
+        '200':
+          description: Array of players
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Player'
+        '401':
+          description: Unauthorized - invalid API key
+  /v1/players/{playerId}/stats:
+    get:
+      operationId: getPlayerStats
+      summary: Get Player Statistics
+      description: >-
+        Returns player statistics for a specific player including current season
+        stats, game-by-game logs, and historical performance data. Available
+        stats vary by sport.
+      tags:
+        - Players
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Player identifier
+        - name: season
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Season year (e.g. 2025 or 2025-26)
+        - name: week
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Week number for weekly sports (NFL, NCAA)
+      responses:
+        '200':
+          description: Player statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerStats'
+        '401':
+          description: Unauthorized - invalid API key
+        '404':
+          description: Player not found
+  /v1/players/{playerId}/projections:
+    get:
+      operationId: getPlayerProjections
+      summary: Get Player Projections
+      description: >-
+        Returns statistical projections for a specific player for upcoming games
+        including projected fantasy points, statistical categories, and model
+        confidence. Used for fantasy sports lineup decisions and prop betting analysis.
+      tags:
+        - Players
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Player identifier
+        - name: game_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Specific game for projections
+      responses:
+        '200':
+          description: Player projections for upcoming games
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerProjections'
+        '401':
+          description: Unauthorized - invalid API key
+        '404':
+          description: Player not found
+  /v1/injuries:
+    get:
+      operationId: getInjuryReports
+      summary: Get Injury Reports
+      description: >-
+        Returns current injury reports for players across a specified sport,
+        including injury type, practice status, game status, and expected return
+        timeline. Critical data for fantasy sports lineup decisions and prop betting.
+      tags:
+        - Players
+      parameters:
+        - name: sport
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [nfl, ncaaf, ncaab, nba, mlb, nhl, soccer, tennis, golf]
+          description: Sport identifier
+          example: "nfl"
+        - name: team_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by team
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [questionable, doubtful, out, ir, day_to_day]
+          description: Filter by injury status
+      responses:
+        '200':
+          description: Array of injury reports
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InjuryReport'
+        '401':
+          description: Unauthorized - invalid API key
+  /v1/games:
+    get:
+      operationId: getGames
+      summary: Get Games
+      description: >-
+        Returns game schedules and results for a specified sport including home
+        and away teams, game date and time, venue, final scores for completed
+        games, and game status. Used to build game selectors and schedule displays.
+      tags:
+        - Games
+      parameters:
+        - name: sport
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [nfl, ncaaf, ncaab, nba, mlb, nhl, soccer, tennis, golf]
+          description: Sport identifier
+          example: "nba"
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter by game date in YYYY-MM-DD format
+        - name: week
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Week number for weekly sports
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [scheduled, in_progress, final]
+          description: Filter by game status
+      responses:
+        '200':
+          description: Array of games
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Game'
+        '401':
+          description: Unauthorized - invalid API key
+  /v1/depth-charts:
+    get:
+      operationId: getDepthCharts
+      summary: Get Depth Charts
+      description: >-
+        Returns current depth charts for teams in a specified sport, showing
+        positional depth ordering and starter designations. Used for lineup
+        analysis and fantasy sports applications.
+      tags:
+        - Players
+      parameters:
+        - name: sport
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [nfl, ncaaf, nba, mlb, nhl]
+          description: Sport identifier
+          example: "nfl"
+        - name: team_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by team identifier
+      responses:
+        '200':
+          description: Array of depth chart entries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DepthChartEntry'
+        '401':
+          description: Unauthorized - invalid API key
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key obtained from Wager API, request via wagerapi.com
+  schemas:
+    GameOdds:
+      type: object
+      properties:
+        game_id:
+          type: string
+          description: Unique game identifier
+        sport:
+          type: string
+          description: Sport identifier
+        league:
+          type: string
+          description: League name
+        home_team:
+          type: string
+          description: Home team name
+        away_team:
+          type: string
+          description: Away team name
+        game_date:
+          type: string
+          format: date-time
+          description: Game date and time in ISO 8601 format
+        markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/OddsMarket'
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last odds update
+    OddsMarket:
+      type: object
+      properties:
+        market:
+          type: string
+          description: Market type (spread, moneyline, total)
+          example: "spread"
+        sportsbook:
+          type: string
+          description: Sportsbook name
+          example: "DraftKings"
+        home_line:
+          type: number
+          format: double
+          description: Home team line (spread or total)
+        home_odds:
+          type: integer
+          description: Home team American odds
+          example: -110
+        away_line:
+          type: number
+          format: double
+          description: Away team line
+        away_odds:
+          type: integer
+          description: Away team American odds
+          example: -110
+    PlayerProp:
+      type: object
+      properties:
+        prop_id:
+          type: string
+          description: Unique prop identifier
+        game_id:
+          type: string
+          description: Associated game identifier
+        player_id:
+          type: string
+          description: Player identifier
+        player_name:
+          type: string
+          description: Player full name
+        team:
+          type: string
+          description: Player team name
+        market:
+          type: string
+          description: Prop market type
+          example: "passing_yards"
+        line:
+          type: number
+          format: double
+          description: Prop line value
+          example: 247.5
+        over_odds:
+          type: integer
+          description: Over American odds
+          example: -115
+        under_odds:
+          type: integer
+          description: Under American odds
+          example: -105
+        sportsbook:
+          type: string
+          description: Sportsbook offering this prop
+        updated_at:
+          type: string
+          format: date-time
+    FuturesOdds:
+      type: object
+      properties:
+        futures_id:
+          type: string
+          description: Unique futures identifier
+        sport:
+          type: string
+          description: Sport identifier
+        market:
+          type: string
+          description: Futures market name
+          example: "super_bowl_winner"
+        display_name:
+          type: string
+          description: Human-readable market name
+          example: "Super Bowl Winner"
+        selections:
+          type: array
+          items:
+            $ref: '#/components/schemas/FuturesSelection'
+        updated_at:
+          type: string
+          format: date-time
+    FuturesSelection:
+      type: object
+      properties:
+        selection_id:
+          type: string
+          description: Selection identifier
+        name:
+          type: string
+          description: Team or player name
+        odds:
+          type: integer
+          description: American odds
+          example: 600
+        sportsbook:
+          type: string
+          description: Sportsbook name
+    Player:
+      type: object
+      properties:
+        player_id:
+          type: string
+          description: Unique player identifier
+        first_name:
+          type: string
+          description: Player first name
+        last_name:
+          type: string
+          description: Player last name
+        full_name:
+          type: string
+          description: Player full name
+        position:
+          type: string
+          description: Playing position
+          example: "QB"
+        team_id:
+          type: string
+          description: Current team identifier
+        team_name:
+          type: string
+          description: Current team name
+        sport:
+          type: string
+          description: Sport identifier
+        status:
+          type: string
+          enum: [active, injured, inactive]
+          description: Player roster status
+    PlayerStats:
+      type: object
+      properties:
+        player_id:
+          type: string
+          description: Player identifier
+        player_name:
+          type: string
+          description: Player full name
+        season:
+          type: string
+          description: Season identifier
+        stats:
+          type: object
+          additionalProperties:
+            type: number
+          description: Stat category to value mapping
+        game_log:
+          type: array
+          items:
+            $ref: '#/components/schemas/GameStats'
+    GameStats:
+      type: object
+      properties:
+        game_id:
+          type: string
+        game_date:
+          type: string
+          format: date
+        opponent:
+          type: string
+        stats:
+          type: object
+          additionalProperties:
+            type: number
+    PlayerProjections:
+      type: object
+      properties:
+        player_id:
+          type: string
+        player_name:
+          type: string
+        projections:
+          type: array
+          items:
+            type: object
+            properties:
+              game_id:
+                type: string
+              opponent:
+                type: string
+              game_date:
+                type: string
+                format: date
+              fantasy_points:
+                type: number
+                format: double
+              stats:
+                type: object
+                additionalProperties:
+                  type: number
+    InjuryReport:
+      type: object
+      properties:
+        player_id:
+          type: string
+          description: Player identifier
+        player_name:
+          type: string
+          description: Player full name
+        team:
+          type: string
+          description: Team name
+        position:
+          type: string
+          description: Player position
+        injury_type:
+          type: string
+          description: Type of injury
+          example: "Hamstring"
+        injury_status:
+          type: string
+          enum: [questionable, doubtful, out, ir, day_to_day]
+          description: Current injury designation
+        practice_status:
+          type: string
+          description: Practice participation status
+          example: "Limited"
+        return_timeline:
+          type: string
+          description: Expected return estimate
+        updated_at:
+          type: string
+          format: date-time
+    Game:
+      type: object
+      properties:
+        game_id:
+          type: string
+          description: Unique game identifier
+        sport:
+          type: string
+          description: Sport identifier
+        league:
+          type: string
+          description: League name
+        home_team_id:
+          type: string
+        home_team_name:
+          type: string
+        away_team_id:
+          type: string
+        away_team_name:
+          type: string
+        game_date:
+          type: string
+          format: date-time
+          description: Game date and time
+        venue:
+          type: string
+          description: Stadium or venue name
+        status:
+          type: string
+          enum: [scheduled, in_progress, final]
+        home_score:
+          type: integer
+          description: Home team score (completed games)
+        away_score:
+          type: integer
+          description: Away team score (completed games)
+    DepthChartEntry:
+      type: object
+      properties:
+        team_id:
+          type: string
+        team_name:
+          type: string
+        sport:
+          type: string
+        positions:
+          type: array
+          items:
+            type: object
+            properties:
+              position:
+                type: string
+                description: Position designation
+              players:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    depth_order:
+                      type: integer
+                      description: Depth position (1 = starter)
+                    player_id:
+                      type: string
+                    player_name:
+                      type: string
+                    status:
+                      type: string

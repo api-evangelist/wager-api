@@ -1,0 +1,22 @@
+{
+  "provider": "wager-api",
+  "sources": [
+    "wager-api-futures-api-openapi.yml",
+    "wager-api-games-api-openapi.yml",
+    "wager-api-odds-api-openapi.yml",
+    "wager-api-players-api-openapi.yml",
+    "wager-api-props-api-openapi.yml"
+  ],
+  "outputs": [
+    "wager-api-futures-api-openapi.yml",
+    "wager-api-games-api-openapi.yml",
+    "wager-api-odds-api-openapi.yml",
+    "wager-api-players-api-openapi.yml",
+    "wager-api-props-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
