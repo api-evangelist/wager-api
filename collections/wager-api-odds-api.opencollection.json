@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wager Futures Odds API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Odds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Game Odds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wagerapi.com/v1/odds",
+            "params": [
+              {
+                "name": "sport",
+                "value": "nfl",
+                "type": "query",
+                "description": "Sport identifier"
+              },
+              {
+                "name": "league",
+                "value": "",
+                "type": "query",
+                "description": "League identifier (e.g. NFL, EPL, La Liga)"
+              },
+              {
+                "name": "game_id",
+                "value": "",
+                "type": "query",
+                "description": "Specific game identifier for targeted odds retrieval"
+              },
+              {
+                "name": "market",
+                "value": "",
+                "type": "query",
+                "description": "Odds market type filter"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date filter in YYYY-MM-DD format"
+              }
+            ]
+          },
+          "docs": "Returns real-time game odds for a specified sport and league, including spreads, moneylines, and totals from major sportsbooks. Supports alternate spreads, alternate totals, half-time lines, and winning margin markets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

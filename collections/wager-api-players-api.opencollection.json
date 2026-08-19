@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wager Futures Players API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Players",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Players",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wagerapi.com/v1/players",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Sport identifier"
+              },
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by team identifier"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search players by name"
+              }
+            ]
+          },
+          "docs": "Returns player information including profile data, current team, position, and status. Used to resolve player IDs for props and fantasy data endpoints."
+        },
+        {
+          "info": {
+            "name": "Get Player Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wagerapi.com/v1/players/:playerId/stats",
+            "params": [
+              {
+                "name": "playerId",
+                "value": "",
+                "type": "path",
+                "description": "Player identifier"
+              },
+              {
+                "name": "season",
+                "value": "",
+                "type": "query",
+                "description": "Season year (e.g. 2025 or 2025-26)"
+              },
+              {
+                "name": "week",
+                "value": "",
+                "type": "query",
+                "description": "Week number for weekly sports (NFL, NCAA)"
+              }
+            ]
+          },
+          "docs": "Returns player statistics for a specific player including current season stats, game-by-game logs, and historical performance data. Available stats vary by sport."
+        },
+        {
+          "info": {
+            "name": "Get Player Projections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wagerapi.com/v1/players/:playerId/projections",
+            "params": [
+              {
+                "name": "playerId",
+                "value": "",
+                "type": "path",
+                "description": "Player identifier"
+              },
+              {
+                "name": "game_id",
+                "value": "",
+                "type": "query",
+                "description": "Specific game for projections"
+              }
+            ]
+          },
+          "docs": "Returns statistical projections for a specific player for upcoming games including projected fantasy points, statistical categories, and model confidence. Used for fantasy sports lineup decisions and prop betting analysis."
+        },
+        {
+          "info": {
+            "name": "Get Injury Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wagerapi.com/v1/injuries",
+            "params": [
+              {
+                "name": "sport",
+                "value": "nfl",
+                "type": "query",
+                "description": "Sport identifier"
+              },
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by team"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by injury status"
+              }
+            ]
+          },
+          "docs": "Returns current injury reports for players across a specified sport, including injury type, practice status, game status, and expected return timeline. Critical data for fantasy sports lineup decisions and prop betting."
+        },
+        {
+          "info": {
+            "name": "Get Depth Charts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wagerapi.com/v1/depth-charts",
+            "params": [
+              {
+                "name": "sport",
+                "value": "nfl",
+                "type": "query",
+                "description": "Sport identifier"
+              },
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by team identifier"
+              }
+            ]
+          },
+          "docs": "Returns current depth charts for teams in a specified sport, showing positional depth ordering and starter designations. Used for lineup analysis and fantasy sports applications."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wager Futures API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Futures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Futures Odds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wagerapi.com/v1/futures",
+            "params": [
+              {
+                "name": "sport",
+                "value": "nfl",
+                "type": "query",
+                "description": "Sport identifier"
+              },
+              {
+                "name": "market",
+                "value": "",
+                "type": "query",
+                "description": "Futures market type (e.g. super_bowl_winner, mvp, division_winner)"
+              },
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "query",
+                "description": "Team identifier filter"
+              }
+            ]
+          },
+          "docs": "Returns futures odds for season and championship markets across thousands of markets including Super Bowl winner, NCAA Championship, NBA Finals, Stanley Cup, Premier League title, Wimbledon, US Open, and more."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

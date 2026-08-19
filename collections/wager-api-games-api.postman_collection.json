@@ -1,0 +1,228 @@
+{
+  "item": [
+    {
+      "id": "e5e2bce8-77cb-4f4d-bffa-2ef3de6896db",
+      "name": "Games",
+      "description": {
+        "content": "Game schedules, results, and team information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7a72fcfc-aa33-4ddc-b079-f8a5676397d2",
+          "name": "Get Games",
+          "request": {
+            "name": "Get Games",
+            "description": {
+              "content": "Returns game schedules and results for a specified sport including home and away teams, game date and time, venue, final scores for completed games, and game status. Used to build game selectors and schedule displays.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "games"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Filter by game date in YYYY-MM-DD format"
+                },
+                {
+                  "disabled": false,
+                  "key": "week",
+                  "value": "<integer>",
+                  "description": "Week number for weekly sports"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by game status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74680a33-0caa-49b9-98a5-4396c38d0407",
+              "name": "Array of games",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nba"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "week",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"game_id\": \"string\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"home_team_id\": \"string\",\n      \"home_team_name\": \"string\",\n      \"away_team_id\": \"string\",\n      \"away_team_name\": \"string\",\n      \"game_date\": \"1951-10-11T13:23:01.725Z\",\n      \"venue\": \"string\",\n      \"status\": \"scheduled\",\n      \"home_score\": 7414,\n      \"away_score\": 9101\n    },\n    {\n      \"game_id\": \"string\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"home_team_id\": \"string\",\n      \"home_team_name\": \"string\",\n      \"away_team_id\": \"string\",\n      \"away_team_name\": \"string\",\n      \"game_date\": \"1947-06-18T07:33:04.286Z\",\n      \"venue\": \"string\",\n      \"status\": \"scheduled\",\n      \"home_score\": 439,\n      \"away_score\": 876\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cce59db-b797-403d-b9a5-51a264d1869e",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nba"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "week",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wagerapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "463d87e8-311b-43e4-8fcb-54c7495a4a93",
+    "name": "Wager Futures Games API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.\n\nContact Support:\n Email: contact@wagerapi.com",
+      "type": "text/plain"
+    }
+  }
+}

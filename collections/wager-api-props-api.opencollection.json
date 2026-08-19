@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wager Futures Props API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Props",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Player Props",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wagerapi.com/v1/props",
+            "params": [
+              {
+                "name": "sport",
+                "value": "nba",
+                "type": "query",
+                "description": "Sport identifier"
+              },
+              {
+                "name": "game_id",
+                "value": "",
+                "type": "query",
+                "description": "Specific game identifier"
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "query",
+                "description": "Player identifier for targeted prop lookup"
+              },
+              {
+                "name": "market",
+                "value": "",
+                "type": "query",
+                "description": "Prop market type (e.g. passing_yards, rushing_yards, points)"
+              }
+            ]
+          },
+          "docs": "Returns player proposition odds for a specified sport including passing yards, rushing yards, receiving yards, touchdowns, points, rebounds, assists, hits, home runs, and other player-specific betting markets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

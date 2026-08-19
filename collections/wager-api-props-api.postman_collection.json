@@ -1,0 +1,285 @@
+{
+  "item": [
+    {
+      "id": "569ebca6-d96b-412e-9df9-88795ab2f375",
+      "name": "Props",
+      "description": {
+        "content": "Player proposition odds",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d29312f4-aa0e-4813-98a7-2318dba6149c",
+          "name": "Get Player Props",
+          "request": {
+            "name": "Get Player Props",
+            "description": {
+              "content": "Returns player proposition odds for a specified sport including passing yards, rushing yards, receiving yards, touchdowns, points, rebounds, assists, hits, home runs, and other player-specific betting markets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "props"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "game_id",
+                  "value": "<string>",
+                  "description": "Specific game identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "player_id",
+                  "value": "<string>",
+                  "description": "Player identifier for targeted prop lookup"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "Prop market type (e.g. passing_yards, rushing_yards, points)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "309a33d5-75a0-4355-aea4-1b38e81f7e74",
+              "name": "Array of player proposition odds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nba"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "player_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"prop_id\": \"string\",\n      \"game_id\": \"string\",\n      \"player_id\": \"string\",\n      \"player_name\": \"string\",\n      \"team\": \"string\",\n      \"market\": \"passing_yards\",\n      \"line\": 247.5,\n      \"over_odds\": -115,\n      \"under_odds\": -105,\n      \"sportsbook\": \"string\",\n      \"updated_at\": \"1959-08-12T12:23:59.473Z\"\n    },\n    {\n      \"prop_id\": \"string\",\n      \"game_id\": \"string\",\n      \"player_id\": \"string\",\n      \"player_name\": \"string\",\n      \"team\": \"string\",\n      \"market\": \"passing_yards\",\n      \"line\": 247.5,\n      \"over_odds\": -115,\n      \"under_odds\": -105,\n      \"sportsbook\": \"string\",\n      \"updated_at\": \"1962-11-09T00:56:47.463Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6132da56-4790-4b1a-acef-104c32ba57ad",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nba"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "player_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "451af293-86f4-4e5c-8646-4ee19d97a746",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nba"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "player_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wagerapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c866308a-ef2e-4657-9908-7ab64a5faf52",
+    "name": "Wager Futures Props API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.\n\nContact Support:\n Email: contact@wagerapi.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "item": [
+    {
+      "id": "6987ce8a-a848-489d-a101-42200544779e",
+      "name": "Futures",
+      "description": {
+        "content": "Season and championship futures markets",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "111438e0-4fa2-4122-b43f-070770ab364c",
+          "name": "Get Futures Odds",
+          "request": {
+            "name": "Get Futures Odds",
+            "description": {
+              "content": "Returns futures odds for season and championship markets across thousands of markets including Super Bowl winner, NCAA Championship, NBA Finals, Stanley Cup, Premier League title, Wimbledon, US Open, and more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "futures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "Futures market type (e.g. super_bowl_winner, mvp, division_winner)"
+                },
+                {
+                  "disabled": false,
+                  "key": "team_id",
+                  "value": "<string>",
+                  "description": "Team identifier filter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50585a53-242c-4251-8267-96c9ecced433",
+              "name": "Array of futures market odds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "futures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"futures_id\": \"string\",\n      \"sport\": \"string\",\n      \"market\": \"super_bowl_winner\",\n      \"display_name\": \"Super Bowl Winner\",\n      \"selections\": [\n        {\n          \"selection_id\": \"string\",\n          \"name\": \"string\",\n          \"odds\": 600,\n          \"sportsbook\": \"string\"\n        },\n        {\n          \"selection_id\": \"string\",\n          \"name\": \"string\",\n          \"odds\": 600,\n          \"sportsbook\": \"string\"\n        }\n      ],\n      \"updated_at\": \"1965-11-12T19:44:15.489Z\"\n    },\n    {\n      \"futures_id\": \"string\",\n      \"sport\": \"string\",\n      \"market\": \"super_bowl_winner\",\n      \"display_name\": \"Super Bowl Winner\",\n      \"selections\": [\n        {\n          \"selection_id\": \"string\",\n          \"name\": \"string\",\n          \"odds\": 600,\n          \"sportsbook\": \"string\"\n        },\n        {\n          \"selection_id\": \"string\",\n          \"name\": \"string\",\n          \"odds\": 600,\n          \"sportsbook\": \"string\"\n        }\n      ],\n      \"updated_at\": \"1997-12-08T07:51:32.090Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59b09060-6291-4a4e-9b9e-f955a158f924",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "futures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "85755836-8902-4789-8d8a-4109ac3f578d",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "futures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wagerapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cbd24333-38d7-4486-b74b-57a59e836561",
+    "name": "Wager Futures API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.\n\nContact Support:\n Email: contact@wagerapi.com",
+      "type": "text/plain"
+    }
+  }
+}

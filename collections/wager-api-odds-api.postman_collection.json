@@ -1,0 +1,303 @@
+{
+  "item": [
+    {
+      "id": "4d9094dd-3eda-4339-beda-9df507c9424c",
+      "name": "Odds",
+      "description": {
+        "content": "Real-time game odds including spreads, moneylines, and totals",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "114f5533-ed57-43b2-ae0d-894c79152ee6",
+          "name": "Get Game Odds",
+          "request": {
+            "name": "Get Game Odds",
+            "description": {
+              "content": "Returns real-time game odds for a specified sport and league, including spreads, moneylines, and totals from major sportsbooks. Supports alternate spreads, alternate totals, half-time lines, and winning margin markets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "odds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "league",
+                  "value": "<string>",
+                  "description": "League identifier (e.g. NFL, EPL, La Liga)"
+                },
+                {
+                  "disabled": false,
+                  "key": "game_id",
+                  "value": "<string>",
+                  "description": "Specific game identifier for targeted odds retrieval"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "Odds market type filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Date filter in YYYY-MM-DD format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91c09f5c-bd88-492a-8a9e-0c08dd822e75",
+              "name": "Array of game odds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"game_id\": \"string\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"home_team\": \"string\",\n      \"away_team\": \"string\",\n      \"game_date\": \"1984-03-05T13:50:06.919Z\",\n      \"markets\": [\n        {\n          \"market\": \"spread\",\n          \"sportsbook\": \"DraftKings\",\n          \"home_line\": 6370.723256134999,\n          \"home_odds\": -110,\n          \"away_line\": 6795.327098077113,\n          \"away_odds\": -110\n        },\n        {\n          \"market\": \"spread\",\n          \"sportsbook\": \"DraftKings\",\n          \"home_line\": 5096.218709256641,\n          \"home_odds\": -110,\n          \"away_line\": 7971.214886876937,\n          \"away_odds\": -110\n        }\n      ],\n      \"updated_at\": \"2011-01-19T15:44:39.072Z\"\n    },\n    {\n      \"game_id\": \"string\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"home_team\": \"string\",\n      \"away_team\": \"string\",\n      \"game_date\": \"2010-03-06T08:23:35.753Z\",\n      \"markets\": [\n        {\n          \"market\": \"spread\",\n          \"sportsbook\": \"DraftKings\",\n          \"home_line\": 2506.569808909935,\n          \"home_odds\": -110,\n          \"away_line\": 9642.472382536202,\n          \"away_odds\": -110\n        },\n        {\n          \"market\": \"spread\",\n          \"sportsbook\": \"DraftKings\",\n          \"home_line\": 3494.5744283182103,\n          \"home_odds\": -110,\n          \"away_line\": 5981.93390011873,\n          \"away_odds\": -110\n        }\n      ],\n      \"updated_at\": \"1980-08-13T14:25:42.154Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cacfb6c7-fba8-453d-a480-188ec394ac09",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e9c2663-e0c0-490a-86d1-1decdd89b133",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "nfl"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wagerapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6016217c-66d2-40cc-9780-e933c121e693",
+    "name": "Wager Futures Odds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.\n\nContact Support:\n Email: contact@wagerapi.com",
+      "type": "text/plain"
+    }
+  }
+}
