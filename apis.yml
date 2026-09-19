@@ -101,6 +101,8 @@ apis:
   humanURL: https://wagerapi.com/
   baseURL: https://api.wagerapi.com
   tags:
+  - Player
+  tags_raw:
   - Players
   properties:
   - type: OpenAPI
