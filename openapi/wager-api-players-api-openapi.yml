@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wager Futures Players API
+  title: Wager Players API
   description: Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.
   version: 1.0.0
   contact:
@@ -233,63 +233,41 @@ paths:
           description: Unauthorized - invalid API key
 components:
   schemas:
-    PlayerProjections:
+    GameStats:
+      type: object
+      properties:
+        game_id:
+          type: string
+        game_date:
+          type: string
+          format: date
+        opponent:
+          type: string
+        stats:
+          type: object
+          additionalProperties:
+            type: number
+    PlayerStats:
       type: object
       properties:
         player_id:
           type: string
+          description: Player identifier
         player_name:
           type: string
-        projections:
+          description: Player full name
+        season:
+          type: string
+          description: Season identifier
+        stats:
+          type: object
+          additionalProperties:
+            type: number
+          description: Stat category to value mapping
+        game_log:
           type: array
           items:
-            type: object
-            properties:
-              game_id:
-                type: string
-              opponent:
-                type: string
-              game_date:
-                type: string
-                format: date
-              fantasy_points:
-                type: number
-                format: double
-              stats:
-                type: object
-                additionalProperties:
-                  type: number
-    DepthChartEntry:
-      type: object
-      properties:
-        team_id:
-          type: string
-        team_name:
-          type: string
-        sport:
-          type: string
-        positions:
-          type: array
-          items:
-            type: object
-            properties:
-              position:
-                type: string
-                description: Position designation
-              players:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    depth_order:
-                      type: integer
-                      description: Depth position (1 = starter)
-                    player_id:
-                      type: string
-                    player_name:
-                      type: string
-                    status:
-                      type: string
+            $ref: '#/components/schemas/GameStats'
     InjuryReport:
       type: object
       properties:
@@ -363,41 +341,63 @@ components:
           - injured
           - inactive
           description: Player roster status
-    PlayerStats:
+    DepthChartEntry:
+      type: object
+      properties:
+        team_id:
+          type: string
+        team_name:
+          type: string
+        sport:
+          type: string
+        positions:
+          type: array
+          items:
+            type: object
+            properties:
+              position:
+                type: string
+                description: Position designation
+              players:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    depth_order:
+                      type: integer
+                      description: Depth position (1 = starter)
+                    player_id:
+                      type: string
+                    player_name:
+                      type: string
+                    status:
+                      type: string
+    PlayerProjections:
       type: object
       properties:
         player_id:
           type: string
-          description: Player identifier
         player_name:
           type: string
-          description: Player full name
-        season:
-          type: string
-          description: Season identifier
-        stats:
-          type: object
-          additionalProperties:
-            type: number
-          description: Stat category to value mapping
-        game_log:
+        projections:
           type: array
           items:
-            $ref: '#/components/schemas/GameStats'
-    GameStats:
-      type: object
-      properties:
-        game_id:
-          type: string
-        game_date:
-          type: string
-          format: date
-        opponent:
-          type: string
-        stats:
-          type: object
-          additionalProperties:
-            type: number
+            type: object
+            properties:
+              game_id:
+                type: string
+              opponent:
+                type: string
+              game_date:
+                type: string
+                format: date
+              fantasy_points:
+                type: number
+                format: double
+              stats:
+                type: object
+                additionalProperties:
+                  type: number
   securitySchemes:
     apiKey:
       type: apiKey

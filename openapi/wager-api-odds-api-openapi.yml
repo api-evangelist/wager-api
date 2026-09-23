@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wager Futures Odds API
+  title: Wager Odds API
   description: Wager API is a modern sports betting data platform providing real-time sports odds, player props, futures markets, and fantasy sports data. The API enables developers to build sports betting applications, bots, and predictive models with a single integration. Covers NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf with real-time spreads, moneylines, totals, player statistics, projections, injury reports, and depth charts.
   version: 1.0.0
   contact:
@@ -91,6 +91,33 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
+    OddsMarket:
+      type: object
+      properties:
+        market:
+          type: string
+          description: Market type (spread, moneyline, total)
+          example: spread
+        sportsbook:
+          type: string
+          description: Sportsbook name
+          example: DraftKings
+        home_line:
+          type: number
+          format: double
+          description: Home team line (spread or total)
+        home_odds:
+          type: integer
+          description: Home team American odds
+          example: -110
+        away_line:
+          type: number
+          format: double
+          description: Away team line
+        away_odds:
+          type: integer
+          description: Away team American odds
+          example: -110
     GameOdds:
       type: object
       properties:
@@ -121,33 +148,6 @@ components:
           type: string
           format: date-time
           description: Timestamp of last odds update
-    OddsMarket:
-      type: object
-      properties:
-        market:
-          type: string
-          description: Market type (spread, moneyline, total)
-          example: spread
-        sportsbook:
-          type: string
-          description: Sportsbook name
-          example: DraftKings
-        home_line:
-          type: number
-          format: double
-          description: Home team line (spread or total)
-        home_odds:
-          type: integer
-          description: Home team American odds
-          example: -110
-        away_line:
-          type: number
-          format: double
-          description: Away team line
-        away_odds:
-          type: integer
-          description: Away team American odds
-          example: -110
   securitySchemes:
     apiKey:
       type: apiKey
