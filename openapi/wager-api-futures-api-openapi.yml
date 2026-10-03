@@ -70,6 +70,22 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
+    FuturesSelection:
+      type: object
+      properties:
+        selection_id:
+          type: string
+          description: Selection identifier
+        name:
+          type: string
+          description: Team or player name
+        odds:
+          type: integer
+          description: American odds
+          example: 600
+        sportsbook:
+          type: string
+          description: Sportsbook name
     FuturesOdds:
       type: object
       properties:
@@ -94,22 +110,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    FuturesSelection:
-      type: object
-      properties:
-        selection_id:
-          type: string
-          description: Selection identifier
-        name:
-          type: string
-          description: Team or player name
-        odds:
-          type: integer
-          description: American odds
-          example: 600
-        sportsbook:
-          type: string
-          description: Sportsbook name
   securitySchemes:
     apiKey:
       type: apiKey
