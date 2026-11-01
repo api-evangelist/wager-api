@@ -1,4 +1,4 @@
-# Wager API (wager-api)
+# Wager API
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,87 +66,159 @@
 
 Wager API is a modern sports betting data platform that enables developers to build sports betting applications, bots, and predictive models with a single API. The platform provides real-time sports odds including spreads, moneylines, totals, player props, and futures markets across NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf. Wager API also delivers player statistics, projections, fantasy data, injury reports, lineup updates, game schedules, and depth charts, making it a comprehensive data source for sports betting and fantasy sports applications.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/apis.yml)
+**Areas:** Sports Betting · Sports Odds · Fantasy Sports · Sports Data · NFL · NBA · MLB · NHL · NCAA
 
-## Scope
+## Wager API on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Wager API is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/wager-api/](https://apis.io/providers/wager-api/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Sports Betting
-- Sports Odds
-- Fantasy Sports
-- Sports Data
-- NFL
-- NBA
-- MLB
-- NHL
-- NCAA
+- [Wager API Futures API](https://apis.io/apis/wager-api/wager-api-futures-api/) — Season and championship futures markets
+- [Wager API Games API](https://apis.io/apis/wager-api/wager-api-games-api/) — Game schedules, results, and team information
+- [Wager API Odds API](https://apis.io/apis/wager-api/wager-api-odds-api/) — Real-time game odds including spreads, moneylines, and totals
+- [Wager API Players API](https://apis.io/apis/wager-api/wager-api-players-api/) — Player statistics, projections, and injury information
+- [Wager API Props API](https://apis.io/apis/wager-api/wager-api-props-api/) — Player proposition odds
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Wager API - Sports Odds
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Real-time sports odds for game spreads, moneylines, totals, alternate spreads, alternate totals, half-time odds, winning margins, and player props across major sports including NFL, NCAA, NBA, MLB, NHL, soccer, tennis, and golf. Supports thousands of futures markets including Super Bowl, NCAA Playoffs, NBA Finals, Stanley Cup, Premier League, and major tennis tournaments.
+- [Wager Api Agentic Access](https://apis.io/agentic-access/wager-api/wager-api-agentic-access/)
 
-- **Human URL:** [https://wagerapi.com/](https://wagerapi.com/)
-- **Base URL:** `https://api.wagerapi.com`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Sports Odds
-- Sports Betting
-- NFL
-- NBA
-- MLB
-- NHL
-- Soccer
-- Tennis
-- Golf
+- [Wager API Game Odds](https://apis.io/schemas/wager-api/wager-api-game-odds/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://wagerapi.com/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/openapi/wager-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/json-schema/wager-api-game-odds-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Postman Collection](collections/wager-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/wager-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### Wager API - Fantasy Sports Data
+- [Wager Api Game Odds Structure](https://apis.io/json-structure/wager-api/wager-api-game-odds-structure/)
 
-Fantasy sports data feed providing player statistics, projections, historical records, injury reports, lineup updates, game results and schedules, and depth charts. Used by fantasy sports applications, daily fantasy platforms, and sports analytics models to access comprehensive player and team data.
+#### JSON-LD (1)
 
-- **Human URL:** [https://wagerapi.com/](https://wagerapi.com/)
-- **Base URL:** `https://api.wagerapi.com`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Wager Api Context](https://apis.io/jsonld/wager-api/wager-api-context/)
 
-- Fantasy Sports
-- Sports Data
-- Player Statistics
-- Injury Reports
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://wagerapi.com/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/wager-api/refs/heads/main/openapi/wager-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/wager-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/wager-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Wager API Vocabulary](https://apis.io/vocabularies/wager-api/wager-api-vocabulary/)
 
-## Common Properties
+#### Examples (2)
+
+Example requests and responses.
+
+- [Wager Api Get Game Odds Example](https://apis.io/examples/wager-api/wager-api-get-game-odds-example/)
+- [Wager Api Get Player Props Example](https://apis.io/examples/wager-api/wager-api-get-player-props-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Wager API](https://apis.io/collections/wager-api/open-wager-api/)
+- [Wager Futures API](https://apis.io/collections/wager-api/open-wager-api-futures-api/)
+- [Wager Futures Games API](https://apis.io/collections/wager-api/open-wager-api-games-api/)
+- [Wager Futures Odds API](https://apis.io/collections/wager-api/open-wager-api-odds-api/)
+- [Wager Futures Players API](https://apis.io/collections/wager-api/open-wager-api-players-api/)
+- [Wager Futures Props API](https://apis.io/collections/wager-api/open-wager-api-props-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Wager API — jsonschema rules](https://apis.io/rules/wager-api/wager-api-jsonschema-spectral-rules/)
+- [Wager API API Rules](https://apis.io/rules/wager-api/wager-api-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Wager Api Authentication](https://apis.io/security/wager-api/wager-api-authentication/)
+- [Wager Api Domain Security](https://apis.io/security/wager-api/wager-api-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Wager Api Plans Pricing](https://apis.io/plans/wager-api/wager-api-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Wager Api Rate Limits](https://apis.io/rate-limits/wager-api/wager-api-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Wager Api Finops](https://apis.io/finops/wager-api/wager-api-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://wagerapi.com/)
-- [Contact](https://wagerapi.com/#contact)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 30.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 58.8 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 7.9 |
+
+**Agent readiness 26.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/wager-api/](https://apis.io/providers/wager-api/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Wager API: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/wager-api/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
